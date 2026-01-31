@@ -9,11 +9,14 @@ final supabase = Supabase.instance.client;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Load environment variables
+  await dotenv.load(fileName: ".env");
+
   // 2. Initialize Supabase
   // IMPORTANT: Replace 'something' with your actual key starting with "eyJ..."
   await Supabase.initialize(
     url: dotenv.env['SUPABASE_URL']! ,
-    anonKey: dotenv.env['SUPABASE_ANON_KEY']!, 
+    anonKey: dotenv.env['SUPABASE_SERVICE_ROLE_KEY']!, 
   );
 
   runApp(const MyApp());
